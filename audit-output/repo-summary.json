@@ -1,0 +1,181 @@
+{
+  "audit_date": "2026-03-11",
+  "github_username": "BabaYaga2772",
+  "github_url": "https://github.com/BabaYaga2772",
+  "summary": {
+    "total_public_repos": 5,
+    "total_forks": 3,
+    "total_original": 2,
+    "qualifying_builds": 1,
+    "total_lines_of_code": 7585,
+    "total_commits_original_work": 3,
+    "date_range_start": "2025-01-08",
+    "date_range_end": "2026-01-27",
+    "primary_language": "TypeScript",
+    "deployment_platform": "Vercel",
+    "private_repos_mentioned_but_not_visible": [
+      "Vibteca (aka Vibe Check)",
+      "Dialed (aka Prime Protocol)",
+      "Speed of Now Studios",
+      "CreatorBuddy.io"
+    ]
+  },
+  "repos": {
+    "qualifying": [
+      {
+        "repo_name": "momentum-planner",
+        "display_name": "Momentum — Life Planner + Habit Tracker",
+        "description": "A dark-themed, full-featured life planning and habit tracking web app with AI coaching via Claude. Features daily/weekly/monthly planning, habit tracking with streaks, mood tracking, gamification with XP and achievements, and AI-powered insights.",
+        "status": "MVP Complete",
+        "tech_stack": {
+          "frontend": [
+            "Next.js 16.1.5 (App Router)",
+            "React 19.2.3",
+            "TypeScript 5",
+            "Tailwind CSS 4",
+            "shadcn/ui (26+ components)",
+            "Framer Motion 12.29.2",
+            "Recharts 3.7.0",
+            "Tiptap 3.17.1",
+            "react-day-picker 9.13.0",
+            "Lucide React",
+            "canvas-confetti 1.9.4",
+            "sonner 2.0.7"
+          ],
+          "backend": [
+            "Next.js API Routes",
+            "Dexie.js 4.2.1 (IndexedDB)"
+          ],
+          "deployment": [
+            "Vercel (Hobby plan, auto-deploy)"
+          ],
+          "auth": "None",
+          "ai_integration": [
+            "@anthropic-ai/sdk 0.71.2",
+            "Claude Sonnet (claude-sonnet-4-20250514)"
+          ],
+          "ai_tools_used": "[NEEDS BOBBY'S INPUT]"
+        },
+        "features": [
+          "Daily planning (priorities, hourly schedule, tasks, notes, review)",
+          "Weekly planning (review, priorities, life area goals)",
+          "Monthly calendar (events, goals, color-coded by life area)",
+          "Habit tracking (boolean, quantity, timed with flexible scheduling)",
+          "Streak calculation (accounts for habit schedule type)",
+          "Mood tracking (5-level emoji picker with notes)",
+          "Gamification (XP, 30 levels, 20 achievements)",
+          "Confetti and particle animations",
+          "AI Coach chat (Claude Sonnet)",
+          "AI Insights (weekly analysis)",
+          "Analytics dashboard (Recharts)",
+          "6 customizable life areas",
+          "Rich text editor (Tiptap)",
+          "Settings page",
+          "Dark theme with gradients/glows",
+          "Responsive design (mobile to desktop)",
+          "Toast notifications",
+          "Skeleton loading states"
+        ],
+        "polish_level": 4.5,
+        "lines_of_code": 7585,
+        "file_breakdown": {
+          "total_source_files": 73,
+          "tsx_files": 58,
+          "ts_files": 14,
+          "css_files": 1,
+          "components": 48,
+          "pages": 10,
+          "hooks": 7,
+          "lib_files": 5,
+          "api_routes": 2,
+          "ui_components": "26+"
+        },
+        "loc_breakdown": {
+          "components": 4805,
+          "app_pages_and_api": 1492,
+          "hooks": 681,
+          "lib": 432,
+          "css": 175
+        },
+        "commit_count": 3,
+        "first_commit": "2026-01-26T18:59:02-06:00",
+        "last_commit": "2026-01-27T02:07:13-06:00",
+        "build_duration_hours": 7,
+        "has_auth": false,
+        "has_database": true,
+        "has_api": true,
+        "has_responsive_design": true,
+        "deployed_url": "https://momentum-planner-nu.vercel.app",
+        "database_collections": [
+          "lifeAreas",
+          "goals",
+          "dailyPlans",
+          "weeklyPlans",
+          "monthlyPlans",
+          "events",
+          "habits",
+          "habitCompletions",
+          "userData",
+          "aiConversations"
+        ],
+        "notable": [
+          "7,585 lines of code committed in a single day (~7 hour window)",
+          "10 database collections with composite indexes",
+          "20-achievement gamification system with confetti/particle animations",
+          "Complex streak calculation logic handling 3 schedule types",
+          "Full AI integration with Claude for coaching and insights",
+          "Production-deployed on Vercel with live URL"
+        ]
+      }
+    ],
+    "excluded_forks": [
+      {
+        "repo_name": "awesome-flipperzero",
+        "reason": "Fork",
+        "created_at": "2025-01-08T05:59:24Z",
+        "source": "Flipper Zero resource collection"
+      },
+      {
+        "repo_name": "cobalt",
+        "reason": "Fork",
+        "created_at": "2025-01-12T17:32:20Z",
+        "source": "Media downloader tool"
+      },
+      {
+        "repo_name": "flipp_pomodoro",
+        "reason": "Fork",
+        "created_at": "2025-01-12T09:23:32Z",
+        "source": "Pomodoro timer for Flipper Zero"
+      }
+    ],
+    "excluded_empty": [
+      {
+        "repo_name": "Cursor-practice",
+        "reason": "Empty repo (size 0, no commits)",
+        "created_at": "2025-10-01T16:14:34Z",
+        "significance": "Suggests Bobby was exploring Cursor AI IDE around this time"
+      }
+    ]
+  },
+  "story_beats": {
+    "first_github_activity": "2025-01-08",
+    "first_original_repo": "2025-10-01",
+    "first_app_commit": "2026-01-26T18:59:02-06:00",
+    "first_deployment": "2026-01-27",
+    "first_app_with_database": "momentum-planner",
+    "first_app_with_api": "momentum-planner",
+    "first_app_with_auth": "[NEEDS BOBBY'S INPUT — not in public repos]",
+    "most_complex_feature": "Streak calculation engine + 20-achievement gamification system",
+    "fastest_build": "momentum-planner (~7 hours)",
+    "total_public_loc": 7585,
+    "distinct_tech_components": 15
+  },
+  "needs_input": [
+    "Private repos: Vibteca, Dialed, CreatorBuddy.io, Speed of Now Studios",
+    "AI tools used per project",
+    "Exact 3.5-week window dates",
+    "Order apps were built",
+    "Which app had auth first",
+    "Total LOC across all projects"
+  ]
+}
