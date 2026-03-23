@@ -42,7 +42,7 @@ export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
 }
 
-export function createEmptyTask(text: string = ''): { id: string; text: string; completed: boolean; lifeAreaId?: number } {
+export function createEmptyTask(text: string = ''): { id: string; text: string; completed: boolean; lifeAreaId?: string } {
   return { id: generateId(), text, completed: false };
 }
 

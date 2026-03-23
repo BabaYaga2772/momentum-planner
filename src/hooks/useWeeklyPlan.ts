@@ -2,12 +2,12 @@
 
 import { useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { WeeklyPlan, Task, WeeklyReview, LifeAreaGoal } from '@/lib/types';
 import { createEmptyTask, createEmptyLifeAreaGoal } from '@/lib/utils';
 
-function createEmptyWeeklyPlan(weekStart: string, lifeAreaIds: number[]): Omit<WeeklyPlan, 'id'> {
-  const lifeAreaGoals: Record<number, LifeAreaGoal[]> = {};
+function createEmptyWeeklyPlan(weekStart: string, lifeAreaIds: string[]): Omit<WeeklyPlan, 'id'> {
+  const lifeAreaGoals: Record<string, LifeAreaGoal[]> = {};
   lifeAreaIds.forEach((id) => {
     lifeAreaGoals[id] = [createEmptyLifeAreaGoal()];
   });
@@ -41,7 +41,7 @@ export function useWeeklyPlan(weekStart: string) {
       const existing = await db.weeklyPlans.where('weekStart').equals(weekStart).first();
       if (!existing) {
         const lifeAreas = await db.lifeAreas.toArray();
-        const lifeAreaIds = lifeAreas.map((a) => a.id!);
+        const lifeAreaIds = lifeAreas.map((a) => String(a.id!));
         const newPlan = createEmptyWeeklyPlan(weekStart, lifeAreaIds);
         await db.weeklyPlans.add(newPlan);
       }
@@ -51,7 +51,7 @@ export function useWeeklyPlan(weekStart: string) {
 
   const updateWeeklyPlan = async (updates: Partial<WeeklyPlan>) => {
     if (weeklyPlan?.id) {
-      await db.weeklyPlans.update(weeklyPlan.id, updates);
+      await db.weeklyPlans.update(toKey(weeklyPlan.id), updates);
     }
   };
 
@@ -71,7 +71,7 @@ export function useWeeklyPlan(weekStart: string) {
     await updateWeeklyPlan({ notes });
   };
 
-  const updateLifeAreaGoals = async (lifeAreaId: number, goals: LifeAreaGoal[]) => {
+  const updateLifeAreaGoals = async (lifeAreaId: string, goals: LifeAreaGoal[]) => {
     if (weeklyPlan) {
       const updated = {
         ...weeklyPlan.lifeAreaGoals,

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { UserData, UserSettings } from '@/lib/types';
 import { DEFAULT_USER_SETTINGS, getLevelFromXP, getXPForNextLevel, ACHIEVEMENTS, XP_VALUES } from '@/lib/defaults';
 import { useUIStore } from '@/lib/store';
@@ -35,14 +35,14 @@ export function useUser() {
     initUser();
   }, []);
 
-  const addXP = async (amount: number, source?: string) => {
+  const addXP = async (amount: number) => {
     if (!userData?.id) return;
 
     const newXP = userData.xp + amount;
     const newLevel = getLevelFromXP(newXP);
     const leveledUp = newLevel > userData.level;
 
-    await db.userData.update(userData.id, { xp: newXP, level: newLevel });
+    await db.userData.update(toKey(userData.id), { xp: newXP, level: newLevel });
 
     if (leveledUp) {
       triggerLevelUp();
@@ -66,21 +66,21 @@ export function useUser() {
     if (userData.achievements.includes(achievementId)) return;
 
     const newAchievements = [...userData.achievements, achievementId];
-    await db.userData.update(userData.id, { achievements: newAchievements });
+    await db.userData.update(toKey(userData.id), { achievements: newAchievements });
     showAchievement(achievementId);
     triggerConfetti();
   };
 
   const updateSettings = async (settings: Partial<UserSettings>) => {
     if (!userData?.id) return;
-    await db.userData.update(userData.id, {
+    await db.userData.update(toKey(userData.id), {
       settings: { ...userData.settings, ...settings },
     });
   };
 
   const useStreakFreeze = async (): Promise<boolean> => {
     if (!userData?.id || userData.streakFreezes <= 0) return false;
-    await db.userData.update(userData.id, {
+    await db.userData.update(toKey(userData.id), {
       streakFreezes: userData.streakFreezes - 1,
     });
     return true;
@@ -88,7 +88,7 @@ export function useUser() {
 
   const addStreakFreeze = async (count: number = 1) => {
     if (!userData?.id) return;
-    await db.userData.update(userData.id, {
+    await db.userData.update(toKey(userData.id), {
       streakFreezes: userData.streakFreezes + count,
     });
   };

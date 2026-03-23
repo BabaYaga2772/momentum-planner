@@ -190,7 +190,7 @@ export function MonthlyCalendar() {
                 <Select
                   value={newEvent.lifeAreaId?.toString()}
                   onValueChange={(value) =>
-                    setNewEvent((prev) => ({ ...prev, lifeAreaId: parseInt(value) }))
+                    setNewEvent((prev) => ({ ...prev, lifeAreaId: value }))
                   }
                 >
                   <SelectTrigger>
