@@ -240,7 +240,7 @@ export default function InsightsPage() {
             <p className="text-sm leading-relaxed whitespace-pre-wrap">{aiInsight}</p>
           ) : (
             <p className="text-sm text-muted-foreground">
-              Click "Generate" to get AI-powered insights about your habits, mood patterns,
+              Click &ldquo;Generate&rdquo; to get AI-powered insights about your habits, mood patterns,
               and productivity trends.
             </p>
           )}

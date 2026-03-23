@@ -42,8 +42,8 @@ export function HabitForm({ habit, onSubmit, onCancel }: HabitFormProps) {
   const [timesPerWeek, setTimesPerWeek] = useState(
     habit?.schedule.timesPerWeek?.toString() || '3'
   );
-  const [lifeAreaId, setLifeAreaId] = useState<number>(
-    habit?.lifeAreaId || lifeAreas[0]?.id || 1
+  const [lifeAreaId, setLifeAreaId] = useState<string>(
+    habit?.lifeAreaId || lifeAreas[0]?.id || '1'
   );
   const [color, setColor] = useState(habit?.color || 'violet');
 
@@ -189,7 +189,7 @@ export function HabitForm({ habit, onSubmit, onCancel }: HabitFormProps) {
         <Label>Life Area</Label>
         <Select
           value={lifeAreaId.toString()}
-          onValueChange={(v) => setLifeAreaId(parseInt(v))}
+          onValueChange={(v) => setLifeAreaId(v)}
         >
           <SelectTrigger>
             <SelectValue />

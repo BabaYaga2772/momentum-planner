@@ -1,10 +1,10 @@
 'use client';
 
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { Goal } from '@/lib/types';
 
-export function useGoals(lifeAreaId?: number) {
+export function useGoals(lifeAreaId?: string) {
   const goals = useLiveQuery(async () => {
     if (lifeAreaId !== undefined) {
       return db.goals.where('lifeAreaId').equals(lifeAreaId).toArray();
@@ -20,12 +20,12 @@ export function useGoals(lifeAreaId?: number) {
     return id;
   };
 
-  const updateGoal = async (id: number, updates: Partial<Goal>) => {
-    await db.goals.update(id, updates);
+  const updateGoal = async (id: string, updates: Partial<Goal>) => {
+    await db.goals.update(toKey(id), updates);
   };
 
-  const deleteGoal = async (id: number) => {
-    await db.goals.delete(id);
+  const deleteGoal = async (id: string) => {
+    await db.goals.delete(toKey(id));
   };
 
   const getGoalsByType = (type: Goal['type']) => {

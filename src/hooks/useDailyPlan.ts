@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { DailyPlan, Task, ScheduleBlock, DailyReview, Mood } from '@/lib/types';
 import { createEmptyTask } from '@/lib/utils';
 import { SCHEDULE_HOURS } from '@/lib/defaults';
@@ -41,7 +41,7 @@ export function useDailyPlan(date: string) {
 
   const updateDailyPlan = async (updates: Partial<DailyPlan>) => {
     if (dailyPlan?.id) {
-      await db.dailyPlans.update(dailyPlan.id, updates);
+      await db.dailyPlans.update(toKey(dailyPlan.id), updates);
     }
   };
 

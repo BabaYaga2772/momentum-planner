@@ -37,7 +37,7 @@ export default function GoalsPage() {
     title: '',
     description: '',
     type: 'long-term',
-    lifeAreaId: lifeAreas[0]?.id || 1,
+    lifeAreaId: lifeAreas[0]?.id || '1',
     status: 'active',
   });
 
@@ -54,7 +54,7 @@ export default function GoalsPage() {
         title: '',
         description: '',
         type: 'long-term',
-        lifeAreaId: lifeAreas[0]?.id || 1,
+        lifeAreaId: lifeAreas[0]?.id || '1',
         status: 'active',
       });
       setIsFormOpen(false);
@@ -67,7 +67,7 @@ export default function GoalsPage() {
     });
   };
 
-  const getGoalsByLifeArea = (lifeAreaId: number) => {
+  const getGoalsByLifeArea = (lifeAreaId: string) => {
     return goals.filter((g) => g.lifeAreaId === lifeAreaId && g.status === 'active');
   };
 
@@ -112,7 +112,7 @@ export default function GoalsPage() {
         <TabsContent value="by-area" className="mt-6">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {lifeAreas.map((area) => {
-              const areaGoals = getGoalsByLifeArea(area.id!);
+              const areaGoals = getGoalsByLifeArea(String(area.id!));
               return (
                 <Card key={area.id} className="bg-card border-border/50">
                   <CardHeader className="pb-3">
@@ -291,7 +291,7 @@ export default function GoalsPage() {
               <Select
                 value={newGoal.lifeAreaId?.toString()}
                 onValueChange={(v) =>
-                  setNewGoal((prev) => ({ ...prev, lifeAreaId: parseInt(v) }))
+                  setNewGoal((prev) => ({ ...prev, lifeAreaId: v }))
                 }
               >
                 <SelectTrigger>

@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { CalendarEvent } from '@/lib/types';
 import { format, startOfMonth, endOfMonth } from 'date-fns';
 
@@ -27,12 +27,12 @@ export function useEvents(month?: number, year?: number) {
     return id;
   };
 
-  const updateEvent = async (id: number, updates: Partial<CalendarEvent>) => {
-    await db.events.update(id, updates);
+  const updateEvent = async (id: string, updates: Partial<CalendarEvent>) => {
+    await db.events.update(toKey(id), updates);
   };
 
-  const deleteEvent = async (id: number) => {
-    await db.events.delete(id);
+  const deleteEvent = async (id: string) => {
+    await db.events.delete(toKey(id));
   };
 
   const getEventsForDate = (date: string) => {
@@ -79,7 +79,7 @@ export function useMonthlyPlan(month: number, year: number) {
 
   const updateMonthlyPlan = async (updates: { goals?: { id: string; text: string; completed: boolean }[]; notes?: string }) => {
     if (monthlyPlan?.id) {
-      await db.monthlyPlans.update(monthlyPlan.id, updates);
+      await db.monthlyPlans.update(toKey(monthlyPlan.id), updates);
     }
   };
 

@@ -1,5 +1,5 @@
 export interface LifeArea {
-  id?: number;
+  id?: string;
   name: string;
   color: string;
   icon: string;
@@ -9,10 +9,10 @@ export interface LifeArea {
 }
 
 export interface Goal {
-  id?: number;
+  id?: string;
   title: string;
   description: string;
-  lifeAreaId: number;
+  lifeAreaId: string;
   type: 'long-term' | 'monthly' | 'weekly';
   targetDate?: string;
   status: 'active' | 'completed' | 'archived';
@@ -22,14 +22,14 @@ export interface Goal {
 export interface ScheduleBlock {
   time: string;
   content: string;
-  lifeAreaId?: number;
+  lifeAreaId?: string;
 }
 
 export interface Task {
   id: string;
   text: string;
   completed: boolean;
-  lifeAreaId?: number;
+  lifeAreaId?: string;
 }
 
 export interface DailyReview {
@@ -44,7 +44,7 @@ export interface Mood {
 }
 
 export interface DailyPlan {
-  id?: number;
+  id?: string;
   date: string;
   topPriorities: Task[];
   schedule: ScheduleBlock[];
@@ -69,18 +69,18 @@ export interface LifeAreaGoal {
 }
 
 export interface WeeklyPlan {
-  id?: number;
+  id?: string;
   weekStart: string;
   lastWeekReview: WeeklyReview;
   topPriorities: Task[];
   weeklyPlan: Task[];
   notes: string;
-  lifeAreaGoals: Record<number, LifeAreaGoal[]>;
+  lifeAreaGoals: Record<string, LifeAreaGoal[]>;
   createdAt: string;
 }
 
 export interface MonthlyPlan {
-  id?: number;
+  id?: string;
   month: number;
   year: number;
   goals: Task[];
@@ -89,12 +89,12 @@ export interface MonthlyPlan {
 }
 
 export interface CalendarEvent {
-  id?: number;
+  id?: string;
   title: string;
   date: string;
   startTime?: string;
   endTime?: string;
-  lifeAreaId?: number;
+  lifeAreaId?: string;
   notes: string;
 }
 
@@ -109,21 +109,21 @@ export interface HabitSchedule {
 }
 
 export interface Habit {
-  id?: number;
+  id?: string;
   name: string;
   description: string;
   type: HabitType;
   target?: number;
   unit?: string;
   schedule: HabitSchedule;
-  lifeAreaId: number;
+  lifeAreaId: string;
   color: string;
   createdAt: string;
 }
 
 export interface HabitCompletion {
-  id?: number;
-  habitId: number;
+  id?: string;
+  habitId: string;
   date: string;
   value: number;
   timestamp: string;
@@ -138,7 +138,7 @@ export interface Achievement {
 }
 
 export interface UserData {
-  id?: number;
+  id?: string;
   xp: number;
   level: number;
   achievements: string[];
@@ -160,7 +160,7 @@ export interface AIMessage {
 }
 
 export interface AIConversation {
-  id?: number;
+  id?: string;
   messages: AIMessage[];
   createdAt: string;
 }

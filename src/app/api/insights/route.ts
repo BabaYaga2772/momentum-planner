@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     let prompt = '';
-    let systemPrompt = 'You are an AI assistant that analyzes personal productivity data and provides insights. Be concise, actionable, and encouraging.';
+    const systemPrompt = 'You are an AI assistant that analyzes personal productivity data and provides insights. Be concise, actionable, and encouraging.';
 
     switch (type) {
       case 'daily-briefing':

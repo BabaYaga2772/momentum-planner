@@ -55,14 +55,14 @@ export function WeeklyPlanPage() {
     }
   };
 
-  const handleLifeAreaGoalAdd = (lifeAreaId: number) => {
+  const handleLifeAreaGoalAdd = (lifeAreaId: string) => {
     if (weeklyPlan) {
       const currentGoals = weeklyPlan.lifeAreaGoals[lifeAreaId] || [];
       updateLifeAreaGoals(lifeAreaId, [...currentGoals, createEmptyLifeAreaGoal()]);
     }
   };
 
-  const handleLifeAreaGoalUpdate = (lifeAreaId: number, goals: LifeAreaGoal[]) => {
+  const handleLifeAreaGoalUpdate = (lifeAreaId: string, goals: LifeAreaGoal[]) => {
     updateLifeAreaGoals(lifeAreaId, goals);
   };
 
