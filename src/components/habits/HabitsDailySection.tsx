@@ -34,12 +34,12 @@ export function HabitsDailySection({ date }: HabitsDailySectionProps) {
     return true;
   });
 
-  const handleToggle = async (habitId: number, isCompleted: boolean) => {
+  const handleToggle = async (habitId: string, isCompleted: boolean) => {
     if (isCompleted) {
       await uncompleteHabit(habitId);
     } else {
       await completeHabit(habitId, 1);
-      await addXP(xpValues.habitComplete, 'habit');
+      await addXP(xpValues.habitComplete);
       triggerConfetti();
 
       if (habits.length === 1) {
@@ -100,7 +100,7 @@ export function HabitsDailySection({ date }: HabitsDailySectionProps) {
 }
 
 interface HabitItemProps {
-  habitId: number;
+  habitId: string;
   name: string;
   completed: boolean;
   lifeAreaColor: string;

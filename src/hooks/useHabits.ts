@@ -1,9 +1,9 @@
 'use client';
 
 import { useLiveQuery } from 'dexie-react-hooks';
-import { db } from '@/lib/db';
+import { db, toKey } from '@/lib/db';
 import type { Habit, HabitCompletion } from '@/lib/types';
-import { format, parseISO, subDays, isAfter, isBefore, eachDayOfInterval } from 'date-fns';
+import { format, parseISO, subDays, eachDayOfInterval } from 'date-fns';
 
 export function useHabits() {
   const habits = useLiveQuery(() => db.habits.toArray(), []);
@@ -16,14 +16,14 @@ export function useHabits() {
     return id;
   };
 
-  const updateHabit = async (id: number, updates: Partial<Habit>) => {
-    await db.habits.update(id, updates);
+  const updateHabit = async (id: string, updates: Partial<Habit>) => {
+    await db.habits.update(toKey(id), updates);
   };
 
-  const deleteHabit = async (id: number) => {
+  const deleteHabit = async (id: string) => {
     await db.transaction('rw', [db.habits, db.habitCompletions], async () => {
-      await db.habitCompletions.where('habitId').equals(id).delete();
-      await db.habits.delete(id);
+      await db.habitCompletions.where('habitId').equals(toKey(id)).delete();
+      await db.habits.delete(toKey(id));
     });
   };
 
@@ -42,14 +42,15 @@ export function useHabitCompletions(date: string) {
     [date]
   );
 
-  const completeHabit = async (habitId: number, value: number = 1) => {
+  const completeHabit = async (habitId: string, value: number = 1) => {
+    const numId = toKey(habitId);
     const existing = await db.habitCompletions
       .where('[habitId+date]')
-      .equals([habitId, date])
+      .equals([numId, date])
       .first();
 
     if (existing) {
-      await db.habitCompletions.update(existing.id!, { value, timestamp: new Date().toISOString() });
+      await db.habitCompletions.update(toKey(existing.id), { value, timestamp: new Date().toISOString() });
     } else {
       await db.habitCompletions.add({
         habitId,
@@ -60,16 +61,16 @@ export function useHabitCompletions(date: string) {
     }
   };
 
-  const uncompleteHabit = async (habitId: number) => {
-    await db.habitCompletions.where('[habitId+date]').equals([habitId, date]).delete();
+  const uncompleteHabit = async (habitId: string) => {
+    await db.habitCompletions.where('[habitId+date]').equals([toKey(habitId), date]).delete();
   };
 
-  const getCompletionForHabit = (habitId: number): HabitCompletion | undefined => {
-    return completions?.find((c) => c.habitId === habitId);
+  const getCompletionForHabit = (habitId: string): HabitCompletion | undefined => {
+    return completions?.find((c) => String(c.habitId) === habitId);
   };
 
-  const isHabitCompleted = (habitId: number): boolean => {
-    return completions?.some((c) => c.habitId === habitId) ?? false;
+  const isHabitCompleted = (habitId: string): boolean => {
+    return completions?.some((c) => String(c.habitId) === habitId) ?? false;
   };
 
   return {
@@ -82,14 +83,14 @@ export function useHabitCompletions(date: string) {
   };
 }
 
-export function useHabitStreak(habitId: number) {
+export function useHabitStreak(habitId: string) {
   const streakData = useLiveQuery(async () => {
-    const habit = await db.habits.get(habitId);
+    const habit = await db.habits.get(toKey(habitId));
     if (!habit) return { current: 0, longest: 0 };
 
     const completions = await db.habitCompletions
       .where('habitId')
-      .equals(habitId)
+      .equals(toKey(habitId))
       .reverse()
       .sortBy('date');
 
@@ -99,7 +100,6 @@ export function useHabitStreak(habitId: number) {
     let currentStreak = 0;
     let longestStreak = 0;
     let tempStreak = 0;
-    let checkDate = today;
 
     const isScheduledForDay = (date: string, schedule: Habit['schedule']): boolean => {
       if (schedule.type === 'daily') return true;
@@ -139,7 +139,7 @@ export function useHabitStreak(habitId: number) {
   return streakData ?? { current: 0, longest: 0 };
 }
 
-export function useHabitHistory(habitId: number, days: number = 30) {
+export function useHabitHistory(habitId: string, days: number = 30) {
   const history = useLiveQuery(async () => {
     const today = new Date();
     const startDate = subDays(today, days - 1);
@@ -147,7 +147,7 @@ export function useHabitHistory(habitId: number, days: number = 30) {
 
     const completions = await db.habitCompletions
       .where('habitId')
-      .equals(habitId)
+      .equals(toKey(habitId))
       .toArray();
 
     const completionMap = new Map(completions.map((c) => [c.date, c.value]));

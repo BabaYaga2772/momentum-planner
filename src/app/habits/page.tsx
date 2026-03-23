@@ -61,7 +61,7 @@ export default function HabitsPage() {
     }
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     await deleteHabit(id);
   };
 
@@ -73,7 +73,7 @@ export default function HabitsPage() {
   const filteredHabits =
     filterLifeAreaId === 'all'
       ? habits
-      : habits.filter((h) => h.lifeAreaId === parseInt(filterLifeAreaId));
+      : habits.filter((h) => h.lifeAreaId === filterLifeAreaId);
 
   if (isLoading) {
     return (

@@ -32,7 +32,7 @@ export function GoalsSection() {
   return (
     <div className="space-y-2">
       {longTermGoals.slice(0, 5).map((goal, index) => {
-        const lifeArea = getLifeAreaById(goal.lifeAreaId);
+        const lifeArea = getLifeAreaById(String(goal.lifeAreaId));
         return (
           <motion.div
             key={goal.id}

@@ -70,7 +70,7 @@ export default function SettingsPage() {
     }
   };
 
-  const handleDeleteArea = async (id: number) => {
+  const handleDeleteArea = async (id: string) => {
     if (confirm('Are you sure you want to delete this life area?')) {
       await deleteLifeArea(id);
     }
