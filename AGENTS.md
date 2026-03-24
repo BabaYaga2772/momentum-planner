@@ -25,24 +25,23 @@
 | Job ID | Title | Description | Owner | Status | Started | Due |
 |---|---|---|---|---|---|---|
 | JOB-001 | Agent Infrastructure Setup | AGENTS.md, updated CLAUDE.md, docs/ scaffold, `dev` branch | Manus | DONE | Mar 23 | Mar 23 |
-| JOB-002 | Cloud Sync Migration | Migrate from Dexie.js (IndexedDB) to Supabase — auth, database, real-time | Claude | OPEN | — | TBD |
-| JOB-003 | Project/Operations Layer | Add hierarchical Projects beneath Life Areas; tag system for context | Claude | OPEN | — | TBD |
+| JOB-002 | Cloud Sync Migration | Migrate from Dexie.js (IndexedDB) to Supabase — auth, database, real-time | Claude | DONE | Mar 23 | Mar 23 |
+| JOB-003 | Project/Operations Layer | Add hierarchical Projects beneath Life Areas; tag system for context | Manus | IN PROGRESS | Mar 23 | TBD |
 | JOB-004 | AI Chief of Staff Upgrade | Evolve AI coach: feed business goals + deadlines, proactive triage, voice input | Claude | OPEN | — | TBD |
 | JOB-005 | Command Center Dashboard | Rebuild insights page as operational dashboard; external data hooks | Claude | OPEN | — | TBD |
-| JOB-006 | UI/UX Premium Overhaul | Cyberpunk-adjacent dark aesthetic; Tesla/Starlink-inspired; pro tool feel | Claude | OPEN | — | TBD |
+| JOB-006 | UI/UX Premium Overhaul | Cyberpunk-adjacent dark aesthetic; Tesla/Starlink-inspired; pro tool feel | Manus | IN PROGRESS | Mar 23 | TBD |
 | JOB-007 | Marketing Site | Landing page for Momentum as a standalone product (future) | Manus | BACKLOG | — | TBD |
 
 ### Bobby's Decisions Needed
 
-- **JOB-002:** Confirm Supabase as cloud backend (vs Firebase/PlanetScale)
-- **JOB-003:** Define the "Projects" data model — how deep should the hierarchy go?
-- **JOB-006:** Approve design direction before Claude starts UI overhaul
+- *(No open decisions — Bobby approved Full hierarchy for JOB-003 and green-lit JOB-006 UI overhaul on Mar 23)*
 
 ### Completed
 
 | Job ID | Title | Owner | Completed |
 |---|---|---|---|
 | JOB-001 | Agent Infrastructure Setup | Manus | Mar 23, 2026 |
+| JOB-002 | Cloud Sync Migration (Phase 1) | Claude + Manus | Mar 23, 2026 |
 
 ---
 
@@ -59,6 +58,20 @@
 - Created `dev` branch
 
 **Branch:** `manus/agent-infrastructure` → merge to `dev`
+
+### [Mar 23, 2026] — Manus — Session M-02
+
+**Jobs touched:** JOB-002 (infra), JOB-006 (design brief)
+**What was done:**
+- Merged Claude's JOB-002 Phase 1 PR (claude/project-sitrep-FsSKd → dev, PR #4)
+- Created Supabase project `momentum-planner` (ID: moeskbrlydpsuigorkda, us-east-1)
+- Ran full schema migration — all 10 tables live with RLS + triggers
+- Supabase URL: `https://moeskbrlydpsuigorkda.supabase.co`
+- Env vars set in Vercel by Bobby; merged dev → main (PR #5)
+- Wrote and merged `docs/DESIGN_BRIEF_JOB006.md` (PR #3)
+- Paused Fitness App Supabase project to free up slot
+
+**Branch:** `manus/job-board-update-job002-complete` → merge to `dev`
 
 ---
 
