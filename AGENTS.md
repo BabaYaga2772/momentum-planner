@@ -26,16 +26,15 @@
 |---|---|---|---|---|---|---|
 | JOB-001 | Agent Infrastructure Setup | AGENTS.md, updated CLAUDE.md, docs/ scaffold, `dev` branch | Manus | DONE | Mar 23 | Mar 23 |
 | JOB-002 | Cloud Sync Migration | Migrate from Dexie.js (IndexedDB) to Supabase — auth, database, real-time | Claude | DONE | Mar 23 | Mar 23 |
-| JOB-003 | Project/Operations Layer | Add hierarchical Projects beneath Life Areas; tag system for context | Claude | OPEN | — | TBD |
+| JOB-003 | Project/Operations Layer | Add hierarchical Projects beneath Life Areas; tag system for context | Manus | IN PROGRESS | Mar 23 | TBD |
 | JOB-004 | AI Chief of Staff Upgrade | Evolve AI coach: feed business goals + deadlines, proactive triage, voice input | Claude | OPEN | — | TBD |
 | JOB-005 | Command Center Dashboard | Rebuild insights page as operational dashboard; external data hooks | Claude | OPEN | — | TBD |
-| JOB-006 | UI/UX Premium Overhaul | Cyberpunk-adjacent dark aesthetic; Tesla/Starlink-inspired; pro tool feel | Claude | OPEN | — | TBD |
+| JOB-006 | UI/UX Premium Overhaul | Cyberpunk-adjacent dark aesthetic; Tesla/Starlink-inspired; pro tool feel | Manus | IN PROGRESS | Mar 23 | TBD |
 | JOB-007 | Marketing Site | Landing page for Momentum as a standalone product (future) | Manus | BACKLOG | — | TBD |
 
 ### Bobby's Decisions Needed
 
-- **JOB-003:** Define the "Projects" data model — how deep should the hierarchy go?
-- **JOB-006:** Approve design direction before Claude starts UI overhaul (design brief ready in `docs/DESIGN_BRIEF_JOB006.md`)
+- *(No open decisions — Bobby approved Full hierarchy for JOB-003 and green-lit JOB-006 UI overhaul on Mar 23)*
 
 ### Completed
 
